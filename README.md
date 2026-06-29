@@ -14,6 +14,13 @@ The primary pipeline lives in [`fragmentomics_nf/`](fragmentomics_nf/), with ful
 - [View the architecture workflow documentation](fragmentomics_nf/docs/architecture_workflow.md)
 - [View the full traceability matrix representation](fragmentomics_nf/docs/traceability_matrix.md)
 
+## Potential AWS Cloud Architecture
+
+![AWS cloud architecture](fragmentomics_nf/docs/assets/aws_cloud_architecture.png)
+
+- [Download the AWS cloud architecture PDF](fragmentomics_nf/docs/assets/aws_cloud_architecture.pdf)
+- [View the AWS cloud architecture documentation](fragmentomics_nf/docs/aws_cloud_architecture.md)
+
 ## What This Repository Is
 
 This repository contains a research-oriented Nextflow DSL2 pipeline for cfDNA WGS fragmentomics. It turns sequencing-derived inputs or public fragment files into normalized fragmentomic features, trains transparent baseline models, generates prediction scores, and produces reviewable HTML reports.
