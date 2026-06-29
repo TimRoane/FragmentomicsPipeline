@@ -1,0 +1,132 @@
+{
+  "n_samples": 286,
+  "n_predictions": 286,
+  "score_min": 8.096047114977554e-06,
+  "score_median": 0.028518369006352448,
+  "score_max": 1.0,
+  "unique_score_count": 284,
+  "classification_counts": {
+    "lower_fragmentome_score": 199,
+    "elevated_fragmentome_score": 87
+  },
+  "evaluation_warning": "These metrics are computed on the supplied prediction file. If this is the same cohort used for training, ROC/PR curves are resubstitution-style diagnostics and can be strongly optimistic.",
+  "class_counts": {
+    "0": 200,
+    "1": 86
+  },
+  "confusion_matrix": {
+    "tp": 84,
+    "tn": 197,
+    "fp": 3,
+    "fn": 2
+  },
+  "sensitivity": 0.9767441860465116,
+  "specificity": 0.985,
+  "roc_auc": 0.9894767441860466,
+  "pr_auc": 0.9640846940893246,
+  "model_metrics": {
+    "logistic_l2": {
+      "roc_auc": 0.9210416666666665,
+      "pr_auc": 0.8724389559877543,
+      "fixed_specificity": {
+        "0.95": {
+          "threshold": 0.6119360800439311,
+          "sensitivity": 0.65625
+        },
+        "0.98": {
+          "threshold": 0.7679332319445601,
+          "sensitivity": 0.609375
+        },
+        "0.99": {
+          "threshold": 0.8240553350905047,
+          "sensitivity": 0.578125
+        }
+      },
+      "evaluation_scope": "cross_validated_training_partition",
+      "heldout_test": {
+        "roc_auc": 0.9490909090909091,
+        "pr_auc": 0.8607183972646717,
+        "tp": 20,
+        "tn": 47,
+        "fp": 3,
+        "fn": 2,
+        "sensitivity": 0.9090909090909091,
+        "specificity": 0.94
+      }
+    },
+    "random_forest": {
+      "roc_auc": 0.8732291666666667,
+      "pr_auc": 0.7935659315227053,
+      "fixed_specificity": {
+        "0.95": {
+          "threshold": 0.5977499999999999,
+          "sensitivity": 0.53125
+        },
+        "0.98": {
+          "threshold": 0.8110000000000006,
+          "sensitivity": 0.359375
+        },
+        "0.99": {
+          "threshold": 0.8701999999999999,
+          "sensitivity": 0.328125
+        }
+      },
+      "evaluation_scope": "cross_validated_training_partition"
+    },
+    "gradient_boosting": {
+      "roc_auc": 0.8808333333333332,
+      "pr_auc": 0.8055111963364613,
+      "fixed_specificity": {
+        "0.95": {
+          "threshold": 0.8048057265780018,
+          "sensitivity": 0.640625
+        },
+        "0.98": {
+          "threshold": 0.9944610371290609,
+          "sensitivity": 0.390625
+        },
+        "0.99": {
+          "threshold": 0.9968773454110972,
+          "sensitivity": 0.390625
+        }
+      },
+      "evaluation_scope": "cross_validated_training_partition"
+    }
+  },
+  "model_metadata": {
+    "model_name": "logistic_l2",
+    "model_version": "0.1.0",
+    "analysis_language": "research use only",
+    "input_feature_count": 230525,
+    "max_features": 5000,
+    "class_counts": {
+      "0": 200,
+      "1": 86
+    },
+    "train_class_counts": {
+      "0": 150,
+      "1": 64
+    },
+    "test_class_counts": {
+      "0": 50,
+      "1": 22
+    },
+    "test_size": 0.25,
+    "random_state": 7,
+    "threshold_95_specificity": 0.6119360800439311,
+    "threshold_source": "cross_validated_training_scores",
+    "training_scope": "train_partition_only"
+  },
+  "cross_validated_predictions": {
+    "n_samples": 214,
+    "unique_score_count": 212,
+    "roc_auc": 0.9210416666666665,
+    "pr_auc": 0.8724389559877543
+  },
+  "heldout_test_predictions": {
+    "n_samples": 72,
+    "unique_score_count": 72,
+    "roc_auc": 0.9490909090909091,
+    "pr_auc": 0.8607183972646717
+  }
+}

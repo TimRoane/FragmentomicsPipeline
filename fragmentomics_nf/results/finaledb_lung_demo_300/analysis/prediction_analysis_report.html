@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fragmentomics Model Evaluation Report</title>
+  <style>
+    :root {
+      --ink: #18212f;
+      --muted: #647184;
+      --line: #d9e0e8;
+      --surface: #ffffff;
+      --surface-alt: #f5f7fa;
+      --accent: #0f766e;
+      --accent-2: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef2f6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    header {
+      background: #111827;
+      color: white;
+      padding: 34px 44px 30px;
+      border-bottom: 5px solid var(--accent);
+    }
+    header h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    header p { margin: 0; color: #cbd5e1; max-width: 980px; }
+    main { max-width: 1220px; margin: 0 auto; padding: 28px; }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 1px 2px rgba(17, 24, 39, 0.04);
+    }
+    h2 { margin: 0 0 14px; font-size: 21px; }
+    h3 { margin: 0 0 12px; font-size: 16px; }
+    p { margin-top: 0; }
+    .muted { color: var(--muted); }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .metric-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-alt);
+      padding: 15px;
+      min-height: 104px;
+    }
+    .metric-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 26px;
+      font-weight: 760;
+      margin-bottom: 4px;
+    }
+    .metric-card span { color: var(--muted); font-size: 13px; }
+    .plot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .plot-card { margin: 0; padding: 16px; box-shadow: none; }
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+    }
+    .confusion {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(140px, 1fr));
+      gap: 10px;
+      max-width: 520px;
+      margin-top: 14px;
+    }
+    .confusion-cell {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--surface-alt);
+    }
+    .confusion-cell strong { display: block; color: var(--muted); font-size: 13px; }
+    .confusion-cell span { font-size: 28px; font-weight: 760; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { background: var(--surface-alt); color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .notice { border-left: 5px solid var(--accent-2); }
+    .notice ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
+      gap: 20px;
+      align-items: start;
+    }
+    footer { color: var(--muted); font-size: 13px; padding: 8px 2px 28px; }
+    code { background: #e8edf3; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    @media (max-width: 760px) {
+      header { padding: 26px 22px; }
+      main { padding: 16px; }
+      .two-col { grid-template-columns: 1fr; }
+      .plot-grid { grid-template-columns: 1fr; }
+      .metric-value { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fragmentomics Model Evaluation Report</h1>
+    <p>Research-use public-literature fragmentomics summary. The held-out test set is the primary estimate of model performance; cross-validation and full-cohort predictions are supporting diagnostics.</p>
+  </header>
+  <main>
+    <section>
+      <h2>Held-Out Test Performance</h2>
+      <p class="muted">The model was selected and thresholded using the training partition, then evaluated on samples withheld from model fitting.</p>
+      <div class="metrics"><div class="metric-card"><div class="metric-label">ROC AUC</div><div class="metric-value">0.949</div><span>Held-out test</span></div><div class="metric-card"><div class="metric-label">PR AUC</div><div class="metric-value">0.861</div><span>Held-out test</span></div><div class="metric-card"><div class="metric-label">Sensitivity</div><div class="metric-value">90.9%</div><span>At selected threshold</span></div><div class="metric-card"><div class="metric-label">Specificity</div><div class="metric-value">94.0%</div><span>At selected threshold</span></div><div class="metric-card"><div class="metric-label">Test Samples</div><div class="metric-value">72</div><span>50 controls / 22 cancers</span></div><div class="metric-card"><div class="metric-label">Threshold</div><div class="metric-value">0.6119</div><span>From CV training scores</span></div></div>
+    </section>
+
+    <section class="two-col">
+      <div>
+        <h2>Held-Out Confusion Matrix</h2>
+        <p class="muted">Calls are based on the selected threshold, optimized for approximately 95% specificity on cross-validated training scores.</p>
+        <div class="confusion"><div class="confusion-cell"><strong>True Positive</strong><span>20</span></div><div class="confusion-cell"><strong>False Negative</strong><span>2</span></div><div class="confusion-cell"><strong>False Positive</strong><span>3</span></div><div class="confusion-cell"><strong>True Negative</strong><span>47</span></div></div>
+      </div>
+      <div>
+        <h2>Held-Out Misclassifications</h2>
+        <div class="table-wrap"><table><thead><tr><th>Sample</th><th>Label</th><th>Error</th><th>Probability</th><th>Call</th></tr></thead><tbody><tr><td>EE86276</td><td>control</td><td>False positive</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE87952</td><td>control</td><td>False positive</td><td>0.9852</td><td>elevated_fragmentome_score</td></tr><tr><td>EE87968</td><td>control</td><td>False positive</td><td>0.7317</td><td>elevated_fragmentome_score</td></tr><tr><td>EE88192</td><td>lung_cancer</td><td>False negative</td><td>0.2171</td><td>lower_fragmentome_score</td></tr><tr><td>EE88245</td><td>lung_cancer</td><td>False negative</td><td>0.0276</td><td>lower_fragmentome_score</td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Held-Out Test Plots</h2>
+      <div class="plot-grid">
+        <section class="plot-card"><h3>Held-Out ROC Curve</h3><img src="test_roc_curve.png" alt="Held-Out ROC Curve"><p>Ranking performance on samples not used for fitting.</p></section>
+        <section class="plot-card"><h3>Held-Out Precision-Recall Curve</h3><img src="test_precision_recall_curve.png" alt="Held-Out Precision-Recall Curve"><p>Precision-recall is especially informative when the cancer class is less common.</p></section>
+        <section class="plot-card"><h3>Held-Out Score Distribution</h3><img src="test_score_histogram.png" alt="Held-Out Score Distribution"><p>Distribution of held-out probabilities by label.</p></section>
+      </div>
+    </section>
+
+    <section>
+      <h2>Model And Cohort</h2>
+      <div class="metrics"><div class="metric-card"><div class="metric-label">Model</div><div class="metric-value">logistic_l2</div></div><div class="metric-card"><div class="metric-label">Input Features</div><div class="metric-value">230,525</div></div><div class="metric-card"><div class="metric-label">Selected Features</div><div class="metric-value">5,000</div></div><div class="metric-card"><div class="metric-label">Training Samples</div><div class="metric-value">214</div><span>150 controls / 64 cancers</span></div><div class="metric-card"><div class="metric-label">Total Cohort</div><div class="metric-value">286</div><span>200 controls / 86 cancers</span></div><div class="metric-card"><div class="metric-label">Random State</div><div class="metric-value">7</div></div></div>
+    </section>
+
+    <section>
+      <h2>Cross-Validated Training Diagnostics</h2>
+      <p class="muted">These metrics are from cross-validated predictions inside the training partition. They are useful for model selection and thresholding, but are secondary to the held-out test set.</p>
+      <div class="metrics"><div class="metric-card"><div class="metric-label">CV ROC AUC</div><div class="metric-value">0.921</div><span>Training partition only</span></div><div class="metric-card"><div class="metric-label">CV PR AUC</div><div class="metric-value">0.872</div><span>Training partition only</span></div><div class="metric-card"><div class="metric-label">CV Samples</div><div class="metric-value">214</div></div><div class="metric-card"><div class="metric-label">Unique CV Scores</div><div class="metric-value">212</div></div></div>
+      <div class="plot-grid" style="margin-top: 16px;">
+        <section class="plot-card"><h3>Cross-Validated ROC Curve</h3><img src="cv_roc_curve.png" alt="Cross-Validated ROC Curve"></section>
+        <section class="plot-card"><h3>Cross-Validated Precision-Recall Curve</h3><img src="cv_precision_recall_curve.png" alt="Cross-Validated Precision-Recall Curve"></section>
+      </div>
+    </section>
+
+    <section>
+      <h2>Full-Cohort Prediction Diagnostics</h2>
+      <p class="muted">These plots summarize the supplied prediction file. If the same cohort was used for training, treat these as ranking and QC views rather than unbiased performance estimates.</p>
+      <div class="metrics"><div class="metric-card"><div class="metric-label">Full-Cohort ROC AUC</div><div class="metric-value">0.989</div><span>Same cohort predictions</span></div><div class="metric-card"><div class="metric-label">Full-Cohort PR AUC</div><div class="metric-value">0.964</div><span>Same cohort predictions</span></div><div class="metric-card"><div class="metric-label">Full-Cohort Sensitivity</div><div class="metric-value">97.7%</div><span>Thresholded calls</span></div><div class="metric-card"><div class="metric-label">Full-Cohort Specificity</div><div class="metric-value">98.5%</div><span>Thresholded calls</span></div></div>
+      <div class="plot-grid" style="margin-top: 16px;">
+        <section class="plot-card"><h3>Score Histogram</h3><img src="score_histogram.png" alt="Score Histogram"></section>
+        <section class="plot-card"><h3>Scores By Label</h3><img src="scores_by_label.png" alt="Scores By Label"></section>
+        <section class="plot-card"><h3>Ranked Scores</h3><img src="ranked_scores.png" alt="Ranked Scores"></section>
+        <section class="plot-card"><h3>Full-Cohort ROC Curve</h3><img src="roc_curve.png" alt="Full-Cohort ROC Curve"></section>
+        <section class="plot-card"><h3>Full-Cohort Precision-Recall Curve</h3><img src="precision_recall_curve.png" alt="Full-Cohort Precision-Recall Curve"></section>
+      </div>
+    </section>
+
+    <section>
+      <h2>Highest Full-Cohort Scores</h2>
+      <div class="table-wrap"><table><thead><tr><th>Sample</th><th>Label</th><th>Probability</th><th>Call</th></tr></thead><tbody><tr><td>EE86233</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86230</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86254</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86264</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86251</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86229</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE88209</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86245</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE88217</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE88219</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE86276</td><td>control</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr><tr><td>EE88218</td><td>lung_cancer</td><td>1.0000</td><td>elevated_fragmentome_score</td></tr></tbody></table></div>
+    </section>
+
+    <section class="notice"><h2>Interpretation Notes</h2><ul><li>These metrics are computed on the supplied prediction file. If this is the same cohort used for training, ROC/PR curves are resubstitution-style diagnostics and can be strongly optimistic.</li></ul></section>
+
+    <footer>
+      Output files: <code>prediction_analysis_summary.json</code>, <code>heldout_test_predictions.tsv</code>, <code>cross_validated_predictions.tsv</code>, <code>predictions_with_labels.tsv</code>.
+    </footer>
+  </main>
+</body>
+</html>

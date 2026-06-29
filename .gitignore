@@ -13,6 +13,21 @@ work/
 results/
 */results/
 
+# Keep the small demo report visible in the repository while excluding
+# heavyweight intermediate outputs, models, and raw data.
+!fragmentomics_nf/results/
+fragmentomics_nf/results/*
+!fragmentomics_nf/results/finaledb_lung_demo_300/
+fragmentomics_nf/results/finaledb_lung_demo_300/*
+!fragmentomics_nf/results/finaledb_lung_demo_300/analysis/
+fragmentomics_nf/results/finaledb_lung_demo_300/analysis/*
+!fragmentomics_nf/results/finaledb_lung_demo_300/analysis/prediction_analysis_report.html
+!fragmentomics_nf/results/finaledb_lung_demo_300/analysis/prediction_analysis_summary.json
+!fragmentomics_nf/results/finaledb_lung_demo_300/predictions/
+fragmentomics_nf/results/finaledb_lung_demo_300/predictions/*
+!fragmentomics_nf/results/finaledb_lung_demo_300/predictions/prediction_analysis_report.html
+!fragmentomics_nf/results/finaledb_lung_demo_300/predictions/prediction_analysis_summary.json
+
 # Local raw/demo data downloads
 finaledb_lung_demo_*/fragments/
 finaledb_lung_demo_*/metadata_json/
