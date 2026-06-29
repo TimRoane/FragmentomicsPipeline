@@ -1,0 +1,9 @@
+sample_id
+chrom
+start
+end
+mapq
+strand
+length
+is_short
+is_long

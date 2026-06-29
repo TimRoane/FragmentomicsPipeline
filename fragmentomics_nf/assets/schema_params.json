@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fragmentomics_nf parameters",
+  "type": "object",
+  "properties": {
+    "mode": {"enum": ["preprocess", "feature_extract", "train", "predict", "post_analyze", "full"]},
+    "input_type": {"enum": ["auto", "finaledb_fragments"]},
+    "genome": {"enum": ["hg19", "hg38"]},
+    "assembly": {"enum": ["hg19", "hg38"]},
+    "chrom_style": {"enum": ["match_bins", "chr", "no_chr"]},
+    "aligner": {"enum": ["bwamem2", "bowtie2"]},
+    "min_mapq": {"type": "integer", "minimum": 0},
+    "min_fragment_length": {"type": "integer", "minimum": 1},
+    "max_fragment_length": {"type": "integer", "minimum": 1},
+    "fragment_min_len": {"type": "integer", "minimum": 1},
+    "fragment_max_len": {"type": "integer", "minimum": 1}
+  }
+}

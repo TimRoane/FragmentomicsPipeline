@@ -1,0 +1,4 @@
+sample_id	chrom	start	end	mapq	strand	length	is_short	is_long
+tiny_bam	chr22	100	240	60	+	140	true	false
+tiny_bam	chr22	500	680	60	+	180	false	true
+tiny_bam	chr22	900	1040	60	-	140	true	false

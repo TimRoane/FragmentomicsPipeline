@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fragmentomics_nf samplesheet",
+  "type": "object",
+  "required": ["sample_id"],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "fastq_1": {"type": "string"},
+    "fastq_2": {"type": "string"},
+    "bam": {"type": "string"},
+    "cram": {"type": "string"},
+    "fragment": {"type": "string"},
+    "fragments": {"type": "string"},
+    "fragment_file": {"type": "string"},
+    "finaledb_fragment": {"type": "string"},
+    "metadata_json": {"type": "string"},
+    "finaledb_url": {"type": "string"},
+    "label": {"type": "string"},
+    "cancer_type": {"type": "string"},
+    "batch": {"type": "string"},
+    "sex": {"type": "string"},
+    "age": {"type": "string"},
+    "smoking_status": {"type": "string"}
+  }
+}

@@ -1,0 +1,23 @@
+name: fragmentomics-nf
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - nextflow
+  - pandas
+  - pyarrow
+  - numpy
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - joblib
+  - pysam
+  - samtools
+  - bedtools
+  - bwa-mem2
+  - bowtie2
+  - fastp
+  - multiqc
+  - mosdepth
+  - xgboost

@@ -1,0 +1,69 @@
+# Nextflow runtime state, cache, and logs
+.nextflow/
+.nextflow.log*
+*.trace
+trace-*.txt
+timeline*.html
+report*.html
+dag*.html
+
+# Pipeline work directories and generated outputs
+work/
+*/work/
+results/
+*/results/
+
+# Local raw/demo data downloads
+finaledb_lung_demo_*/fragments/
+finaledb_lung_demo_*/metadata_json/
+*/finaledb_lung_demo_*/fragments/
+*/finaledb_lung_demo_*/metadata_json/
+
+# Large local reference files
+resources/reference/
+*/resources/reference/
+*.fa
+*.fasta
+*.fa.gz
+*.fasta.gz
+*.fai
+*.dict
+*.2bit
+
+# Binary/genomics artifacts
+*.bam
+*.bai
+*.cram
+*.crai
+*.sam
+*.fastq
+*.fq
+*.fastq.gz
+*.fq.gz
+*.bed.gz
+*.tsv.gz
+*.bgz
+*.parquet
+*.pkl
+*.joblib
+
+# Python/editor/cache noise
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.secret
+*.key
+*.pem
+
+# Codex/session metadata
+.agents/
+.codex/

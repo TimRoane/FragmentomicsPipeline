@@ -1,0 +1,3 @@
+sample_id,fastq_1,fastq_2,bam,cram,label,cancer_type,batch,sex,age,smoking_status
+tiny_bam,,,tests/tiny/tiny.bam,,control,,batch1,F,55,never
+

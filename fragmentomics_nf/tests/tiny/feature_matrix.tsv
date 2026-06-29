@@ -1,0 +1,5 @@
+sample_id	label	cancer_type	batch	sex	age	smoking_status	bin_chr22_0_5000000_total_gc_corrected	bin_chr22_0_5000000_short_gc_corrected	mito_fraction
+s1	control		b1	F	55	never	0.10	0.04	0.01
+s2	control		b1	M	61	former	0.11	0.03	0.02
+s3	cancer	lung	b2	F	64	current	0.40	0.20	0.04
+s4	cancer	lung	b2	M	70	former	0.35	0.18	0.03
