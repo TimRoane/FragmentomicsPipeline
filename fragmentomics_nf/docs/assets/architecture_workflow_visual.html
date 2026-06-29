@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fragmentomics NF Architecture Workflow</title>
+  <style>
+    @page {
+      size: 17in 13in;
+      margin: 0.35in;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #eef3f7;
+      color: #182235;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      width: 16.3in;
+      min-height: 12.3in;
+      margin: 0 auto;
+      padding: 0.28in;
+      background: #f8fafc;
+    }
+
+    .header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 16px;
+      border-bottom: 4px solid #20b2aa;
+      padding-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #566276;
+      max-width: 760px;
+      line-height: 1.35;
+    }
+
+    .badge {
+      border: 1px solid #c7d2e1;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: #344155;
+      background: #ffffff;
+      white-space: nowrap;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #ffffff;
+      border: 1px solid #d8e1ed;
+      border-radius: 8px;
+    }
+
+    .section {
+      fill: #f4f7fb;
+      stroke: #cbd7e6;
+      stroke-width: 1.2;
+      rx: 8;
+    }
+
+    .section-title {
+      fill: #44536a;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .box {
+      fill: #ffffff;
+      stroke: #c5d2e3;
+      stroke-width: 1.25;
+      rx: 7;
+    }
+
+    .input {
+      fill: #e8f5ff;
+      stroke: #7bb7dd;
+    }
+
+    .process {
+      fill: #eefaf7;
+      stroke: #64bcae;
+    }
+
+    .feature {
+      fill: #fff7e8;
+      stroke: #e0ad55;
+    }
+
+    .model {
+      fill: #f1edff;
+      stroke: #9a87d4;
+    }
+
+    .runtime {
+      fill: #f3f5f8;
+      stroke: #9ca9ba;
+    }
+
+    .output {
+      fill: #f8fbff;
+      stroke: #8aa4c5;
+      stroke-dasharray: 4 3;
+    }
+
+    .node-title {
+      fill: #1f2a3d;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .node-sub {
+      fill: #5d6b80;
+      font-size: 10px;
+    }
+
+    .small {
+      font-size: 9.5px;
+    }
+
+    .arrow {
+      stroke: #546277;
+      stroke-width: 1.7;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+
+    .arrow-soft {
+      stroke: #8b98aa;
+      stroke-width: 1.45;
+      fill: none;
+      stroke-dasharray: 5 4;
+      marker-end: url(#arrowhead-soft);
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #334155;
+    }
+
+    .legend-card {
+      background: #ffffff;
+      border: 1px solid #d8e1ed;
+      border-radius: 8px;
+      padding: 10px 12px;
+      line-height: 1.35;
+    }
+
+    .legend-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #172033;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1>Fragmentomics NF Architecture Workflow</h1>
+        <div class="subtitle">
+          End-to-end view of input routing, preprocessing, public fragment ingest, feature engineering,
+          baseline modeling, prediction analysis, and Nextflow runtime controls.
+        </div>
+      </div>
+      <div class="badge">Research pipeline architecture | source: main.nf + modules/local + bin</div>
+    </header>
+
+    <svg viewBox="0 0 1560 840" role="img" aria-label="Fragmentomics NF architecture workflow diagram">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="#546277"></path>
+        </marker>
+        <marker id="arrowhead-soft" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="#8b98aa"></path>
+        </marker>
+      </defs>
+
+      <rect x="18" y="22" width="218" height="430" class="section"></rect>
+      <text x="34" y="48" class="section-title">Input Layer</text>
+
+      <rect x="42" y="72" width="168" height="54" class="box input"></rect>
+      <text x="58" y="94" class="node-title">Sample sheet</text>
+      <text x="58" y="111" class="node-sub">or public manifest</text>
+
+      <rect x="42" y="146" width="168" height="54" class="box input"></rect>
+      <text x="58" y="168" class="node-title">FASTQ</text>
+      <text x="58" y="185" class="node-sub">paired reads</text>
+
+      <rect x="42" y="220" width="168" height="54" class="box input"></rect>
+      <text x="58" y="242" class="node-title">BAM / CRAM</text>
+      <text x="58" y="259" class="node-sub">alignment inputs</text>
+
+      <rect x="42" y="294" width="168" height="54" class="box input"></rect>
+      <text x="58" y="316" class="node-title">Fragment files</text>
+      <text x="58" y="333" class="node-sub">.frag.tsv.gz / .bgz</text>
+
+      <rect x="42" y="370" width="168" height="54" class="box input"></rect>
+      <text x="58" y="392" class="node-title">References</text>
+      <text x="58" y="409" class="node-sub">FASTA, chrom sizes</text>
+
+      <rect x="276" y="22" width="214" height="210" class="section"></rect>
+      <text x="292" y="48" class="section-title">Validation</text>
+      <rect x="302" y="76" width="162" height="58" class="box process"></rect>
+      <text x="320" y="98" class="node-title">VALIDATE</text>
+      <text x="320" y="115" class="node-sub">validated sheet</text>
+      <text x="320" y="130" class="node-sub">run manifest</text>
+      <rect x="326" y="168" width="114" height="42" class="box process"></rect>
+      <text x="350" y="192" class="node-title">Route mode</text>
+
+      <rect x="532" y="22" width="248" height="344" class="section"></rect>
+      <text x="548" y="48" class="section-title">Preprocess</text>
+      <rect x="562" y="72" width="188" height="46" class="box process"></rect>
+      <text x="596" y="100" class="node-title">FASTP</text>
+      <rect x="562" y="132" width="188" height="46" class="box process"></rect>
+      <text x="580" y="160" class="node-title">ALIGN_BWA/BOWTIE</text>
+      <rect x="562" y="192" width="188" height="46" class="box process"></rect>
+      <text x="590" y="220" class="node-title">SORT_INDEX_BAM</text>
+      <rect x="562" y="252" width="188" height="46" class="box process"></rect>
+      <text x="587" y="280" class="node-title">MARK_DUPLICATES</text>
+      <rect x="562" y="312" width="188" height="46" class="box process"></rect>
+      <text x="604" y="340" class="node-title">FILTER_BAM</text>
+
+      <rect x="532" y="390" width="248" height="150" class="section"></rect>
+      <text x="548" y="416" class="section-title">Public Fragment Ingest</text>
+      <rect x="562" y="442" width="188" height="62" class="box process"></rect>
+      <text x="579" y="464" class="node-title">INGEST_FRAGMENTS</text>
+      <text x="579" y="481" class="node-sub">schema + MAPQ filters</text>
+      <text x="579" y="496" class="node-sub">chromosome matching</text>
+
+      <rect x="820" y="22" width="342" height="518" class="section"></rect>
+      <text x="836" y="48" class="section-title">Feature Engineering</text>
+      <rect x="854" y="74" width="130" height="52" class="box feature"></rect>
+      <text x="878" y="97" class="node-title">BUILD_BINS</text>
+      <text x="878" y="113" class="node-sub">autosomal bins</text>
+      <rect x="1008" y="74" width="130" height="52" class="box feature"></rect>
+      <text x="1028" y="97" class="node-title">GC_ANNOTATE</text>
+      <text x="1028" y="113" class="node-sub">bin GC content</text>
+      <rect x="854" y="160" width="284" height="58" class="box feature"></rect>
+      <text x="912" y="183" class="node-title">BIN_FRAGMENT_COUNTS</text>
+      <text x="912" y="200" class="node-sub">total, short, and long fragment counts</text>
+      <rect x="854" y="250" width="284" height="58" class="box feature"></rect>
+      <text x="924" y="273" class="node-title">GC_CORRECT_BINS</text>
+      <text x="924" y="290" class="node-sub">GC-adjusted bin features</text>
+      <rect x="854" y="342" width="130" height="56" class="box feature"></rect>
+      <text x="868" y="366" class="node-title">ARM_FEATURES</text>
+      <text x="868" y="383" class="node-sub">chromosome arms</text>
+      <rect x="1008" y="342" width="130" height="56" class="box feature"></rect>
+      <text x="1029" y="366" class="node-title">OPTIONAL</text>
+      <text x="1029" y="383" class="node-sub">motifs / WPS</text>
+      <rect x="894" y="438" width="204" height="62" class="box feature"></rect>
+      <text x="927" y="462" class="node-title">ASSEMBLE_MATRIX</text>
+      <text x="927" y="479" class="node-sub">feature_matrix.tsv</text>
+      <text x="927" y="494" class="node-sub">dictionary + summary</text>
+
+      <rect x="1202" y="22" width="330" height="416" class="section"></rect>
+      <text x="1218" y="48" class="section-title">Modeling And Reporting</text>
+      <rect x="1238" y="80" width="120" height="56" class="box model"></rect>
+      <text x="1263" y="104" class="node-title">TRAIN</text>
+      <text x="1263" y="121" class="node-sub">model + metrics</text>
+      <rect x="1378" y="80" width="120" height="56" class="box model"></rect>
+      <text x="1397" y="104" class="node-title">PREDICT</text>
+      <text x="1397" y="121" class="node-sub">scores table</text>
+      <rect x="1268" y="194" width="200" height="62" class="box model"></rect>
+      <text x="1300" y="218" class="node-title">POST_ANALYZE</text>
+      <text x="1300" y="235" class="node-sub">summary, plots, tables</text>
+      <rect x="1268" y="316" width="200" height="62" class="box output"></rect>
+      <text x="1302" y="340" class="node-title">HTML Report</text>
+      <text x="1302" y="357" class="node-sub">presentation-ready</text>
+
+      <rect x="276" y="590" width="980" height="180" class="section"></rect>
+      <text x="292" y="616" class="section-title">Nextflow Runtime Controls</text>
+      <rect x="320" y="644" width="160" height="60" class="box runtime"></rect>
+      <text x="355" y="668" class="node-title">main.nf</text>
+      <text x="355" y="685" class="node-sub">DSL2 orchestration</text>
+      <rect x="520" y="644" width="160" height="60" class="box runtime"></rect>
+      <text x="551" y="668" class="node-title">nextflow.config</text>
+      <text x="551" y="685" class="node-sub">params + resources</text>
+      <rect x="720" y="644" width="160" height="60" class="box runtime"></rect>
+      <text x="754" y="668" class="node-title">profiles</text>
+      <text x="754" y="685" class="node-sub">docker, slurm, cloud</text>
+      <rect x="920" y="644" width="160" height="60" class="box runtime"></rect>
+      <text x="951" y="668" class="node-title">results/run</text>
+      <text x="951" y="685" class="node-sub">published outputs</text>
+      <rect x="1120" y="644" width="96" height="60" class="box runtime"></rect>
+      <text x="1141" y="668" class="node-title">work/</text>
+      <text x="1135" y="685" class="node-sub">ignored cache</text>
+
+      <path class="arrow" d="M210 99 H302"></path>
+      <path class="arrow" d="M383 134 V168"></path>
+      <path class="arrow" d="M210 173 H326"></path>
+      <path class="arrow" d="M210 247 H250 V190 H326"></path>
+      <path class="arrow" d="M210 321 H250 V204 H326"></path>
+      <path class="arrow" d="M440 189 H510 V95 H562"></path>
+      <path class="arrow" d="M440 189 H510 V215 H562"></path>
+      <path class="arrow" d="M383 210 V473 H562"></path>
+      <path class="arrow" d="M210 397 H854 V100"></path>
+
+      <path class="arrow" d="M656 118 V132"></path>
+      <path class="arrow" d="M656 178 V192"></path>
+      <path class="arrow" d="M656 238 V252"></path>
+      <path class="arrow" d="M656 298 V312"></path>
+      <path class="arrow" d="M750 335 H794 V189 H854"></path>
+      <path class="arrow" d="M750 473 H794 V189 H854"></path>
+
+      <path class="arrow" d="M984 100 H1008"></path>
+      <path class="arrow" d="M1073 126 V160"></path>
+      <path class="arrow" d="M996 218 V250"></path>
+      <path class="arrow" d="M996 308 V342"></path>
+      <path class="arrow" d="M919 398 V438"></path>
+      <path class="arrow-soft" d="M1073 398 V438"></path>
+      <path class="arrow" d="M1098 469 H1190 V108 H1238"></path>
+      <path class="arrow" d="M1098 469 H1190 V62 H1438 V80"></path>
+
+      <path class="arrow" d="M1358 108 H1378"></path>
+      <path class="arrow" d="M1298 136 V178 H1340 V194"></path>
+      <path class="arrow" d="M1438 136 V178 H1396 V194"></path>
+      <path class="arrow" d="M1368 256 V316"></path>
+
+      <path class="arrow-soft" d="M400 644 V560 H384 V232"></path>
+      <path class="arrow-soft" d="M600 644 V560 H990 V540"></path>
+      <path class="arrow-soft" d="M800 644 V560 H1368 V438"></path>
+      <path class="arrow-soft" d="M1000 644 V560 H1368 V378"></path>
+    </svg>
+
+    <section class="legend">
+      <div class="legend-card">
+        <strong>Primary path</strong>
+        Sample metadata is validated first, then the pipeline routes sequencing inputs through preprocessing or public fragment files through direct ingest. Both paths converge before bin counting and matrix assembly.
+      </div>
+      <div class="legend-card">
+        <strong>Tracked outputs</strong>
+        Small representative reports are kept in the repository. Heavy outputs such as raw fragments, work cache, feature matrices, reference genomes, and model binaries remain ignored.
+      </div>
+      <div class="legend-card">
+        <strong>Runtime model</strong>
+        Nextflow orchestrates module wrappers, Python scripts implement domain logic, and profiles configure local, container, cluster, or cloud execution.
+      </div>
+    </section>
+  </main>
+</body>
+</html>

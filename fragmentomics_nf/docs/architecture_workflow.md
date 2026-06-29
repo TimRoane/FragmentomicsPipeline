@@ -2,6 +2,16 @@
 
 This diagram summarizes the `fragmentomics_nf` pipeline architecture from inputs through preprocessing, feature extraction, modeling, and reporting.
 
+## Rendered Visual
+
+- [Download the architecture workflow PDF](assets/architecture_workflow_visual.pdf)
+- [Open the architecture workflow PNG](assets/architecture_workflow_visual.png)
+- [Open the printable HTML source](assets/architecture_workflow_visual.html)
+
+![Architecture workflow visual](assets/architecture_workflow_visual.png)
+
+## Mermaid Source
+
 ```mermaid
 flowchart TD
   subgraph INPUTS["Input Layer"]
@@ -149,4 +159,3 @@ sample metadata
 - Public fragment ingest and BAM-derived fragment extraction converge on Parquet fragment files before feature extraction.
 - Optional feature families are parameter-controlled and can be added to the matrix without changing the core count and GC-correction path.
 - Runtime cache and heavyweight generated outputs remain outside source control; only small representative report artifacts are tracked.
-
